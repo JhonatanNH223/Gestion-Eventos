@@ -8,7 +8,6 @@ import com.Jhonatan.Gestion_Eventos.exception.NotFoundException;
 import com.Jhonatan.Gestion_Eventos.mapper.UserMapper;
 import com.Jhonatan.Gestion_Eventos.model.User;
 import com.Jhonatan.Gestion_Eventos.repository.UserRepository;
-import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +54,21 @@ public class UserService implements IUserService {
         repo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Error al eliminar Usuario: el usuario no existe"));
         repo.deleteById(id);
+    }
+
+    @Override
+    public UserResponseDTO getUserById(Long id) {
+        User user = repo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Error al buscar el usuario:  El usuario con el id " + id +  " no existe"));
+        return UserMapper.toResponseDTO(user);
+    }
+
+    @Override
+    public UserResponseDTO getUserByEmail(String email) {
+        if (email.isEmpty()) {throw new ConflictException("Error al buscar el usuario: el campo esta vacio");}
+        User user = repo.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Error al buscar el usuario:  El usuario con el Email " + email +" no existe"));
+        return UserMapper.toResponseDTO(user);
     }
 
 

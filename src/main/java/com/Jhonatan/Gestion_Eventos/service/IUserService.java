@@ -13,10 +13,6 @@ public interface IUserService {
     UserResponseDTO createUser(UserCreateDTO userCreateDTO);
     UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO);
     void deleteUser(Long id);
-
-//    UserResponseDTO getUserById(Integer id);
-//    UserResponseDTO getUserByEmail(String email);
-//    UserResponseDTO getUserByUsername(String username);
-//    UserResponseDTO getUserByUsernameAndPassword(String username, String password);
-
+    UserResponseDTO getUserById(Long id);
+    UserResponseDTO getUserByEmail(String email);
 }

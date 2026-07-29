@@ -39,6 +39,15 @@ public class UserController {
         service.deleteUser(id);
         return ResponseEntity.ok("Usuario eliminado exitosamente");
     }
+    @GetMapping("/getUserByEmail")
+    public ResponseEntity<?> getUserByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(service.getUserByEmail(email));
+    }
+
+    @GetMapping("/getUserById/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getUserById(id));
+    }
 
 
 }

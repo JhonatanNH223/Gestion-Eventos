@@ -31,9 +31,6 @@ public class Event {
     @Column(nullable = false)
     private String ubicacion;
 
-    @Version
-    private Long version;
-
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seat> seats = new ArrayList<>();
 
