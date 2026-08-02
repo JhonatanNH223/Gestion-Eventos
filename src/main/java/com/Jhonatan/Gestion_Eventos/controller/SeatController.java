@@ -21,6 +21,12 @@ public class SeatController {
         return ResponseEntity.ok(seatService.getSeatsAvailability(id,status));
     }
 
+    @GetMapping("/getSeats/{eventId}")
+    public ResponseEntity<List<SeatResponseDTO>> getSeats(@PathVariable Long eventId){
+        return ResponseEntity.ok(seatService.getSeats(eventId));
+    }
+
+
     @PostMapping("reservation")
     public ResponseEntity<?> SeatReservation(@RequestParam Long eventId,@RequestParam String row,@RequestParam int col){
         seatService.seatReservation(eventId,row,col);

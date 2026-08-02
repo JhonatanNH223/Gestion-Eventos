@@ -34,6 +34,12 @@ public class SeatService implements ISeatService {
         return seatRepo.findByEventIdAndStatus(id, status).stream().map(SeatMapper::seatResponseDTO).toList();
     }
 
+    @Override
+    public List<SeatResponseDTO> getSeats(Long eventId) {
+        return seatRepo.findByEventId(eventId).stream().map(SeatMapper::seatResponseDTO).toList();
+    }
+
+
     @Transactional
     @Override
     public void seatReservation(Long eventId, String row, int col) {
